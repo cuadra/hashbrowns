@@ -1,27 +1,26 @@
 #!/usr/bin/env node
-const fs = require("fs");
+
+const fs = require("fs/promises");
 const crypto = require("crypto");
 const path = require("path");
 
-const getHash = (filePath) => {
-  return new Promise((resolve, reject) => {
-    const hash = crypto.createHash("sha256");
-    const stream = fs.createReadStream(filePath);
-    hash.setEncoding("hex");
-    stream.pipe(hash);
+async function hashAndRename(filePath) {
+  const buffer = await fs.readFile(filePath);
 
-    stream.on("error", reject);
+  const hash = crypto
+    .createHash("sha256")
+    .update(buffer)
+    .digest("hex")
+    .slice(0, 8);
 
-    stream.on("end", () => {
-      resolve(hash.read());
-    });
-  });
-};
-const filePath = path.resolve(process.cwd(), process.argv[2]);
-getHash(filePath)
-  .then((hash) => {
-    console.log(hash.slice(0, process.argv[4]));
-  })
-  .catch((err) => {
-    console.error(`Error computing hash: ${err.message}`);
-  });
+  const ext = path.extname(filePath);
+  const name = path.basename(filePath, ext);
+  const dir = path.dirname(filePath);
+
+  const newPath = path.join(dir, `${name}.${hash}${ext}`);
+
+  await fs.rename(filePath, newPath);
+  console.log(`Renamed → ${newPath}`);
+}
+
+hashAndRename(process.argv[2]).catch(console.error);
