@@ -1,4 +1,4 @@
-# Hashbrows
+# Hashbrowns
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/bbb6cf2f-859c-4cdd-aef8-d506f59f4ac5" />
 
 ## Installation
@@ -14,7 +14,5 @@ npm link hb
 ## Usage
 ```javascript
 hb package.json
-//64048088f1031a74cb8691da66aede03efe1b82e78ed7ccdd9898ac46cec2594
-hb package.json -r 5
-//64048
+//Renamed → package.64048088.json
 ```
