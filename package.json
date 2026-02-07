@@ -1,7 +1,9 @@
 {
   "name": "hashbrowns",
   "version": "0.1.0",
-  "scripts": {},
+  "scripts": {
+    "test": "node --test"
+  },
   "bin": {
     "hb": "./dist/cli.js"
   },

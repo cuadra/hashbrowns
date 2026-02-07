@@ -14,5 +14,18 @@ npm link hb
 ## Usage
 ```javascript
 hb package.json
-//Renamed → package.64048088.json
+//Renamed -> package.865e6603.json
+```
+
+## Folder Usage
+```javascript
+hb dist
+//Renamed -> dist.4d1f4f4f
+```
+
+## Hash Only
+```javascript
+hb -h package.json
+//865e6603
+//returns hash without changing file
 ```
