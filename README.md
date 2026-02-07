@@ -11,7 +11,7 @@ npm link
 npm link hb
 ```
 
-## Usage
+## File Usage
 ```javascript
 hb package.json
 //Renamed -> package.865e6603.json
